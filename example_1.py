@@ -142,7 +142,7 @@ y_tuned, u_tuned = simulate_closed_loop(torch.tensor(kappa_tuned))
 
 time = range(N + 1)
 # 1) Closed-loop responses: untuned vs tuned vs disturbance
-plt.figure(figsize=(9, 4))  # Increase width and reduce height
+plt.figure(figsize=(7, 2))  # Increase width and reduce height
 plt.plot(time, y_untuned.numpy(), "--", label="untuned output")
 plt.plot(time, y_tuned.numpy(), label="tuned output")
 plt.plot(time, w.numpy(), ":", label="disturbance $w_k$")
@@ -152,13 +152,13 @@ plt.axhline(-w_max, color="black", linestyle="--", linewidth=1.2)
 plt.xlabel("time step $k$", fontsize=14)
 plt.ylabel("$y_k$", fontsize=14)
 plt.title("Closed-loop response with bounded disturbance", fontsize=14)
-plt.legend(fontsize=12)
+plt.legend(fontsize=12, loc="upper right")
 plt.grid(True)
 plt.savefig("closed_loop_response.pdf", format="pdf", bbox_inches="tight")
 plt.show()
 
 # Combined compact subplot: gain evolution + stability residual
-fig, axes = plt.subplots(2, 1, figsize=(9, 4), sharex=True)  # Increase width and reduce height
+fig, axes = plt.subplots(2, 1, figsize=(7, 3), sharex=True)  # Increase width and reduce height
 
 # --- 1) Gain evolution ---
 axes[0].plot(range(num_iters), history_kappa)

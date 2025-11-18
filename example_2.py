@@ -247,7 +247,7 @@ if __name__ == "__main__":
     # # #  Closed-loop test + Lyapunov trajectory check
     """
     print('\nTest Closed Loop System with learned policy and V(x)\n')
-    nsteps_test = 100
+    nsteps_test = 80
     cl_system.nsteps = nsteps_test
 
     data = {
@@ -276,7 +276,7 @@ if __name__ == "__main__":
     print("max ΔV over trajectory:", dV.max().item())
 
     # --- Three-subplot figure: states + reference, control + bounds, ΔV ---
-    fig, axes = plt.subplots(3, 1, figsize=(8, 7), sharex=False)
+    fig, axes = plt.subplots(3, 1, figsize=(7, 5), sharex=False)
 
     k_x = np.arange(nsteps_test + 1)
     k_u = np.arange(nsteps_test)
@@ -299,8 +299,8 @@ if __name__ == "__main__":
     ax0.set_ylabel('States', fontsize=label_fs)
     ax0.set_title('Closed-loop states and reference', fontsize=title_fs, pad=6)
     ax0.grid(True, alpha=0.4)
-    ax0.tick_params(axis='both', labelsize=small)
-    ax0.legend(fontsize=legend_fs, loc='best')
+    ax0.tick_params(labelbottom=False)
+    ax0.legend(fontsize=legend_fs, loc='lower right')
 
     # ---------------------- Subplot 2: control with bounds ----------------------
     ax1 = axes[1]
@@ -311,7 +311,7 @@ if __name__ == "__main__":
     ax1.set_ylabel('Control', fontsize=label_fs)
     ax1.set_title('Control input and bounds', fontsize=title_fs, pad=6)
     ax1.grid(True, alpha=0.4)
-    ax1.tick_params(axis='both', labelsize=small)
+    ax1.tick_params(labelbottom=False)
     ax1.legend(fontsize=legend_fs, loc="lower right")
 
     # ---------------------- Subplot 3: ΔV trajectory ----------------------
